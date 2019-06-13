@@ -103,18 +103,18 @@ pipeline {
             steps{
                 sshagent (credentials: ['password']) {
                    sh """
-                        sshpass -p "vagrant" ssh StrictHostKeyChecking=no ssh root@192.168.50.11 perform the commands
+                        sshpass -p "vagrant" ssh -o StrictHostKeyChecking=no root@192.168.50.11 "sh /opt/scrpt.sh"
                    """
                    
-                   or we can use the  withcredententials plugin to hid the password
+                   or we can use the  withcredententials plugin to hid the password and we can do copying of the files
                    
                    withCredentials([string(credentialsId: 'password', variable: 'pword')]) {
                             sh """
                         sshpass -p "$pword" scp -o StrictHostKeyChecking=no /var/lib/jenkins/sai root@192.168.50.11:/home/vagrant1
-                   """
+                            """
                 }             
                 sh "ls /var/lib/jenkins"
-        }
+            }
         }
     }
 }
