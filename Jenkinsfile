@@ -1,4 +1,4 @@
-properties([parameters([string(defaultValue: '', description: 'Specify the ImageID', name: 'ImageID')]])
+properties([parameters([string(defaultValue: '', description: 'Specify the ImageID', name: 'ImageID')])])
 	    
 node{
     
